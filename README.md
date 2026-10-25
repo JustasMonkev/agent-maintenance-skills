@@ -7,6 +7,7 @@ Reusable agent skills for common software maintenance, research, and review work
 | Skill | Purpose |
 |---|---|
 | `audit-docs` | Verify documentation claims against the actual codebase. |
+| `be-ambitious` | Choose a stronger outcome, evidence, or cross-disciplinary method without expanding scope. |
 | `finish-with-evidence` | Turn rough requests into bounded work with observable checks and evidence-backed completion. |
 | `grade-skill` | Evaluate an agent skill with a rubric and realistic task prompts. |
 | `monitor-upstream` | Track upstream repository changes that may affect a local fork or wrapper. |
