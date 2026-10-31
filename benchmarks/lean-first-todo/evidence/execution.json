@@ -1,9 +1,0 @@
-{
-  "requestedModel": "gpt-6.1-sol",
-  "freshContexts": true,
-  "firstBatchDispatchWindowStart": "2026-10-31T05:34:03Z",
-  "firstBatchAllCompleteObserved": "2026-10-31T05:35:57Z",
-  "lean2DispatchWindowStart": "2026-10-31T05:35:57Z",
-  "timingNote": "Observation bounds from orchestration, not exact compute times or token cost. First batch ran concurrently; second treatment ran after a slot became available.",
-  "lean2CompleteObserved": "2026-10-31T05:41:11.885Z"
-}

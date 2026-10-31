@@ -1,1 +1,0 @@
-{ todos := [{ id := 1, completed := false }, { id := 3, completed := false }], nextId := 4 }
