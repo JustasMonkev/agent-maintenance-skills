@@ -1,0 +1,131 @@
+{
+  "node": "v26.5.0",
+  "requestedModel": "gpt-6.1-sol",
+  "skillSha256": "16960809ccff34abc8d6b0f179b9b1699547eed05148df4630de8e87ffab7912",
+  "taskSha256": "3a43f02b33be3db4f1cc5988155a070a74187033401c7e871493e89bb32d6961",
+  "domainSuiteSha256": "e78a032c126dd0955a2689d797c368ed0f5800cdf124a6e8047dc1b02c02c1db",
+  "browserSuiteSha256": "cce59468de55e46ec79a63d5e4fd50709527640a0e2f6cf34eaaaf5be9e05954",
+  "firstDraftsUnchanged": true,
+  "results": [
+    {
+      "name": "baseline-1",
+      "domain": {
+        "passed": 19,
+        "failed": 0
+      },
+      "browser": {
+        "passed": 10,
+        "failed": 0
+      },
+      "production": {
+        "todo.mjs": {
+          "lines": 44,
+          "bytes": 2061
+        },
+        "app.mjs": {
+          "lines": 98,
+          "bytes": 4028
+        },
+        "index.html": {
+          "lines": 22,
+          "bytes": 1209
+        },
+        "style.css": {
+          "lines": 33,
+          "bytes": 2398
+        }
+      },
+      "modelLines": 0
+    },
+    {
+      "name": "baseline-2",
+      "domain": {
+        "passed": 19,
+        "failed": 0
+      },
+      "browser": {
+        "passed": 10,
+        "failed": 0
+      },
+      "production": {
+        "todo.mjs": {
+          "lines": 48,
+          "bytes": 2019
+        },
+        "app.mjs": {
+          "lines": 91,
+          "bytes": 4022
+        },
+        "index.html": {
+          "lines": 12,
+          "bytes": 1136
+        },
+        "style.css": {
+          "lines": 29,
+          "bytes": 2178
+        }
+      },
+      "modelLines": 0
+    },
+    {
+      "name": "lean-1",
+      "domain": {
+        "passed": 19,
+        "failed": 0
+      },
+      "browser": {
+        "passed": 10,
+        "failed": 0
+      },
+      "production": {
+        "todo.mjs": {
+          "lines": 28,
+          "bytes": 1757
+        },
+        "app.mjs": {
+          "lines": 49,
+          "bytes": 3677
+        },
+        "index.html": {
+          "lines": 3,
+          "bytes": 1086
+        },
+        "style.css": {
+          "lines": 27,
+          "bytes": 2129
+        }
+      },
+      "modelLines": 41
+    },
+    {
+      "name": "lean-2",
+      "domain": {
+        "passed": 19,
+        "failed": 0
+      },
+      "browser": {
+        "passed": 10,
+        "failed": 0
+      },
+      "production": {
+        "todo.mjs": {
+          "lines": 30,
+          "bytes": 1828
+        },
+        "app.mjs": {
+          "lines": 59,
+          "bytes": 4002
+        },
+        "index.html": {
+          "lines": 7,
+          "bytes": 1090
+        },
+        "style.css": {
+          "lines": 1,
+          "bytes": 1995
+        }
+      },
+      "modelLines": 32
+    }
+  ]
+}

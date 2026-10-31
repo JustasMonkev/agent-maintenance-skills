@@ -1,0 +1,25 @@
+{
+  "project": "baseline-2",
+  "postHoc": true,
+  "observations": {
+    "draft-after-add": {
+      "expectedDraft": "Unsaved draft",
+      "observedDraft": "Original"
+    },
+    "exhausted-allocator": {
+      "todoCount": 0,
+      "remainingInput": "",
+      "status": [
+        ""
+      ]
+    },
+    "failed-save-then-blank": {
+      "before": [
+        "Saving failed. Your changes are kept in this session, but may be lost after reload."
+      ],
+      "after": [
+        "Saving failed. Your changes are kept in this session, but may be lost after reload."
+      ]
+    }
+  }
+}

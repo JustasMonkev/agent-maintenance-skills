@@ -1,0 +1,20 @@
+import assert from 'node:assert/strict';
+import { initialState, transition as step, parseStored, visibleTodos } from './todo.mjs';
+let s = initialState();
+assert.notEqual(s, initialState());
+assert.equal(step(s,{type:'add',title:'  '}),s);
+s = step(s,{type:'add',title:' one '}); s = step(s,{type:'add',title:'one'});
+const old = structuredClone(s);
+assert.equal(step(s,{type:'edit',id:1,title:' '}),s);
+assert.equal(step(s,{type:'toggle',id:99}),s);
+assert.equal(step(s,{type:'unknown',id:1}),s);
+let next=step(s,{type:'toggle',id:1}); assert.deepEqual(s,old);
+assert.equal(visibleTodos(next,'active').length,1);
+assert.equal(step(next,{type:'edit',id:1,title:' new '}).todos[0].completed,true);
+next=step(next,{type:'remove',id:1}); next=step(next,{type:'add',title:'three'});
+assert.deepEqual(next.todos.map(t=>t.id),[2,3]); // same explicit Lean trace
+assert.deepEqual(parseStored(JSON.stringify(next)),next);
+for(const bad of [null,'{','null',JSON.stringify({...s,nextId:2}),JSON.stringify({...s,todos:[s.todos[0],s.todos[0]]}),JSON.stringify({...s,todos:[{...s.todos[0],title:' bad'}]}),JSON.stringify({...s,nextId:1.2})]) assert.deepEqual(parseStored(bad), initialState());
+assert.equal(step({todos:[],nextId:Number.MAX_SAFE_INTEGER},{type:'add',title:'x'}).todos.length,0);
+assert.equal(step(step(s,{type:'toggle',id:1}),{type:'clearCompleted'}).todos.length,1);
+console.log('PASS domain: immutability, duplicates, blank/no-op actions, filters, identity trace, restore validation, exhaustion, clear');

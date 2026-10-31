@@ -1,0 +1,124 @@
+TAP version 13
+# Subtest: initial states are fresh and valid
+ok 1 - initial states are fresh and valid
+  ---
+  duration_ms: 0.6035
+  type: 'test'
+  ...
+# Subtest: addition trims Unicode whitespace and appends a stable identity
+ok 2 - addition trims Unicode whitespace and appends a stable identity
+  ---
+  duration_ms: 0.095417
+  type: 'test'
+  ...
+# Subtest: empty additions and edits preserve all state
+ok 3 - empty additions and edits preserve all state
+  ---
+  duration_ms: 0.090791
+  type: 'test'
+  ...
+# Subtest: duplicate titles have independent identities
+ok 4 - duplicate titles have independent identities
+  ---
+  duration_ms: 0.065125
+  type: 'test'
+  ...
+# Subtest: edit preserves completion, identity, order and nextId
+ok 5 - edit preserves completion, identity, order and nextId
+  ---
+  duration_ms: 0.045583
+  type: 'test'
+  ...
+# Subtest: toggle twice restores values and changes only the requested todo
+ok 6 - toggle twice restores values and changes only the requested todo
+  ---
+  duration_ms: 0.060833
+  type: 'test'
+  ...
+# Subtest: missing identities and unknown actions are no-ops
+ok 7 - missing identities and unknown actions are no-ops
+  ---
+  duration_ms: 0.0715
+  type: 'test'
+  ...
+# Subtest: removal preserves allocator and identities are never reused
+ok 8 - removal preserves allocator and identities are never reused
+  ---
+  duration_ms: 0.0515
+  type: 'test'
+  ...
+# Subtest: clear completed is selective, idempotent and preserves allocator
+ok 9 - clear completed is selective, idempotent and preserves allocator
+  ---
+  duration_ms: 0.054167
+  type: 'test'
+  ...
+# Subtest: filters select in original order without changing full state
+ok 10 - filters select in original order without changing full state
+  ---
+  duration_ms: 0.081334
+  type: 'test'
+  ...
+# Subtest: transitions accept deeply frozen inputs and never mutate them
+ok 11 - transitions accept deeply frozen inputs and never mutate them
+  ---
+  duration_ms: 0.084291
+  type: 'test'
+  ...
+# Subtest: exhausted safe-integer allocator is a no-op
+ok 12 - exhausted safe-integer allocator is a no-op
+  ---
+  duration_ms: 0.066042
+  type: 'test'
+  ...
+# Subtest: valid storage round-trip preserves future identity allocation
+ok 13 - valid storage round-trip preserves future identity allocation
+  ---
+  duration_ms: 0.090958
+  type: 'test'
+  ...
+# Subtest: missing, malformed and wrong-root storage resets atomically
+ok 14 - missing, malformed and wrong-root storage resets atomically
+  ---
+  duration_ms: 0.07575
+  type: 'test'
+  ...
+# Subtest: invalid todo shapes reject the whole snapshot
+ok 15 - invalid todo shapes reject the whole snapshot
+  ---
+  duration_ms: 0.336667
+  type: 'test'
+  ...
+# Subtest: duplicate identities and invalid allocators reject storage
+ok 16 - duplicate identities and invalid allocators reject storage
+  ---
+  duration_ms: 0.117667
+  type: 'test'
+  ...
+# Subtest: invalid snapshot resets do not share mutable state
+ok 17 - invalid snapshot resets do not share mutable state
+  ---
+  duration_ms: 0.056583
+  type: 'test'
+  ...
+# Subtest: hostile markup remains ordinary domain text
+ok 18 - hostile markup remains ordinary domain text
+  ---
+  duration_ms: 0.041167
+  type: 'test'
+  ...
+# Subtest: 5000 deterministic mixed operations agree with an independent reference
+ok 19 - 5000 deterministic mixed operations agree with an independent reference
+  ---
+  duration_ms: 194.328666
+  type: 'test'
+  ...
+1..19
+# tests 19
+# suites 0
+# pass 19
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 200.793542

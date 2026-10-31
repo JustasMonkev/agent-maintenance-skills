@@ -1,0 +1,29 @@
+:root { font-family: system-ui, sans-serif; color: #223329; background: #f1f3ed; }
+* { box-sizing: border-box; }
+body { margin: 0; padding: 5vh 16px; }
+main { max-width: 720px; margin: auto; padding: clamp(20px, 5vw, 44px); background: #fffef9; border: 1px solid #d6ded1; border-radius: 18px; box-shadow: 0 12px 45px #263b2410; }
+h1 { font-size: clamp(2rem, 6vw, 3rem); letter-spacing: -.05em; margin: 8px 0 30px; }
+.eyebrow { color: #526c58; font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; }
+label { display: block; font-weight: 650; margin-bottom: 8px; }
+input, button { font: inherit; }
+input:not([type=checkbox]) { min-width: 0; width: 100%; border: 1px solid #9cae9d; border-radius: 7px; padding: 12px; background: white; color: inherit; }
+button { border: 1px solid #bec9b9; border-radius: 7px; background: #f7f9f3; color: #284631; padding: 9px 12px; cursor: pointer; }
+button:hover { background: #e5eddf; }
+button:disabled { opacity: .5; cursor: default; }
+:focus-visible { outline: 3px solid #447bca; outline-offset: 3px; }
+.add-row { display: flex; gap: 10px; }
+.add-row button { background: #285939; color: white; padding-inline: 22px; }
+.toolbar { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px; align-items: center; margin-top: 28px; font-size: .9rem; }
+nav { display: flex; gap: 5px; }
+[aria-pressed=true] { background: #dce8d5; border-color: #64865c; }
+ul { padding: 0; list-style: none; margin: 20px 0; }
+li { display: flex; gap: 10px; align-items: center; padding: 16px 0; border-bottom: 1px solid #e1e6dc; }
+input[type=checkbox] { width: 20px; height: 20px; flex-shrink: 0; accent-color: #285939; }
+.title { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+.completed { color: #687568; text-decoration: line-through; }
+.edit-form { display: flex; flex-wrap: wrap; gap: 8px; width: 100%; }
+.edit-form input { flex: 1 1 180px; }
+#empty, #status { color: #56634f; line-height: 1.5; }
+#status:not(:empty) { border-left: 3px solid #a56b20; padding-left: 12px; }
+footer { margin-top: 24px; }
+@media(max-width: 420px) { li { flex-wrap: wrap; } .title { flex-basis: calc(100% - 40px); } li > button { margin-left: 0; } }

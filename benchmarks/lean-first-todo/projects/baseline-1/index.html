@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Everyday todos</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="app.mjs"></script>
+</head>
+<body>
+<main>
+  <header><p class="eyebrow">A LITTLE FOCUS</p><h1>Everyday todos</h1><p>Make room for what matters. One task at a time.</p></header>
+  <form id="add-form"><label for="new-todo">New todo</label><div class="add-row"><input id="new-todo" autocomplete="off" placeholder="What needs doing?"><button type="submit">Add</button></div></form>
+  <p id="status" role="status"></p>
+  <section aria-label="Your todos">
+    <div class="toolbar"><p data-testid="remaining"></p><div id="filters" aria-label="Filter todos"><button type="button" data-filter="all" aria-pressed="true">All</button><button type="button" data-filter="active" aria-pressed="false">Active</button><button type="button" data-filter="completed" aria-pressed="false">Completed</button></div></div>
+    <ul data-testid="todo-list"></ul><p id="empty"></p>
+    <footer><button type="button" id="clear">Clear completed</button></footer>
+  </section>
+</main>
+</body>
+</html>

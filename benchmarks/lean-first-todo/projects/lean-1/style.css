@@ -1,0 +1,27 @@
+:root { color-scheme: light; font-family: system-ui, sans-serif; color: #233b36; background: #f2f5f0; }
+* { box-sizing: border-box; }
+body { margin: 0; padding: 48px 16px; }
+main { max-width: 740px; margin: auto; background: #fff; border: 1px solid #d4dfd7; border-radius: 18px; padding: 32px; box-shadow: 0 12px 40px #233b3609; }
+h1 { font-size: clamp(1.8rem, 6vw, 2.5rem); margin: 8px 0 30px; letter-spacing: -.04em; }
+.eyebrow { color: #577064; font-size: .85rem; }
+label { display: block; font-weight: 600; margin-bottom: 8px; }
+input, button { font: inherit; }
+input:not([type=checkbox]) { min-width: 0; border: 1px solid #9cafa5; border-radius: 7px; padding: 12px; width: 100%; }
+button { border: 1px solid #a4b6ab; background: #f8faf7; color: #233b36; padding: 9px 13px; border-radius: 7px; cursor: pointer; }
+button:hover { background: #e7eee8; }
+button:disabled { opacity: .5; cursor: default; }
+:focus-visible { outline: 3px solid #b66a13; outline-offset: 3px; }
+.add-row { display: flex; gap: 10px; }
+.add-row button, button[aria-pressed=true] { background: #285b47; color: #fff; border-color: #285b47; }
+#status { min-height: 1.4em; color: #8b3c12; font-size: .9rem; }
+.toolbar { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; border-bottom: 1px solid #e2e8e2; padding-bottom: 14px; }
+#filters { display: flex; gap: 5px; }
+[data-testid=remaining] { font-size: .9rem; }
+ul { list-style: none; padding: 0; margin: 0 0 18px; }
+li { display: flex; gap: 10px; align-items: center; padding: 18px 0; border-bottom: 1px solid #e2e8e2; }
+input[type=checkbox] { width: 20px; height: 20px; flex: 0 0 20px; accent-color: #285b47; }
+.title { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+.done { text-decoration: line-through; color: #65746b; }
+.edit-form { width: 100%; display: flex; gap: 8px; }
+#empty { color: #65746b; }
+@media(max-width:480px) { body { padding: 16px 10px; } main { padding: 20px 16px; } li { flex-wrap: wrap; } .title { flex-basis: calc(100% - 40px); } .edit-form { flex-wrap: wrap; } .edit-form input { flex-basis: 100%; } button { min-height: 42px; } }

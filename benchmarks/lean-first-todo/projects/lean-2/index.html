@@ -1,0 +1,7 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Everyday todos</title><link rel="stylesheet" href="style.css"></head>
+<body><main><header><p class="eyebrow">A LITTLE SPACE TO GET THINGS DONE</p><h1>Everyday todos</h1></header>
+<form id="add-form"><label for="new-todo">New todo</label><div class="add-row"><input id="new-todo" autocomplete="off" placeholder="What needs doing?" required><button>Add</button></div></form>
+<p id="storage-status" role="status"></p>
+<section aria-label="Your todos"><div class="toolbar"><p data-testid="remaining"></p><div class="filters" aria-label="Filter todos"><button type="button" data-filter="all">All</button><button type="button" data-filter="active">Active</button><button type="button" data-filter="completed">Completed</button></div></div><ul data-testid="todo-list"></ul><p id="empty"></p><button id="clear" type="button">Clear completed</button></section>
+<footer>One thing at a time.</footer></main><script type="module" src="app.mjs"></script></body></html>
