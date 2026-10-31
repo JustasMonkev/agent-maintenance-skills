@@ -10,6 +10,7 @@ Reusable agent skills for common software maintenance, research, and review work
 | `be-ambitious` | Choose a stronger outcome, evidence, or cross-disciplinary method without expanding scope. |
 | `finish-with-evidence` | Turn rough requests into bounded work with observable checks and evidence-backed completion. |
 | `grade-skill` | Evaluate an agent skill with a rubric and realistic task prompts. |
+| `lean-first` | Draft and check a small Lean model before implementing consequential decision or state-transition logic. |
 | `monitor-upstream` | Track upstream repository changes that may affect a local fork or wrapper. |
 | `prior-art-search` | Search for existing projects and libraries before building something new. |
 | `security-scan-sharded` | Coordinate a sharded security review and validate findings. |
