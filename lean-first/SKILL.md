@@ -36,7 +36,10 @@ trace). Otherwise skip the search and say so.
 - **Lean available:** std-only file with `State`, `step : State → Op → State`, `inv :
   State → Bool`; `#eval` the risk traces and all sequences up to length 3 on a tiny
   domain. Prove only the 1–3 properties that constrain the design; no `sorry`, `admit`
-  or axioms; never weaken the spec to finish.
+  or axioms; never weaken the spec to finish. Then replay the risk traces (and any
+  counterexamples) as target-language tests asserting the model's `#eval` results and
+  resulting state against the real code; a passing model says nothing about the code
+  until those match.
 - **Lean missing, search still warranted:** do not install it. Write one target-language
   test over all sequences up to length 3 (2 keys, 3 time points, capacity 2) asserting
   invariants, input immutability and spec-stated effects; near 60 lines, under a second.
@@ -77,4 +80,5 @@ input validation. Exercise the real flow; a proof says nothing about wiring or c
 ## 4. Report (≤8 lines)
 
 Lean version or "Lean unavailable"; each bug with its trace; what was proved vs
-bounded-checked vs tested; remaining assumptions. Claim gains only with comparison evidence.
+bounded-checked vs tested, and which traces were replayed against the code; remaining
+assumptions. Claim gains only with comparison evidence.
