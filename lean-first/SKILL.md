@@ -1,73 +1,58 @@
 ---
 name: lean-first
-description: Draft and check a small executable Lean model of consequential decision or state-transition logic before implementing it in the target language. Use for model-first development, tricky invariants, or an explicit Lean-first request; not routine UI work or a general TypeScript bug scan.
+description: Check consequential decision or state-transition logic against a small executable Lean model, searching short operation sequences for counterexamples, then implement or fix the target code. Use for model-first development, tricky invariants, auditing existing state logic, or an explicit Lean-first request; not routine UI work or a broad bug scan.
 ---
 
 # Lean first
 
-Use Lean to clarify a difficult contract before committing to its implementation.
-The deliverable is still the user's requested software, not a formalization project.
+Find contract bugs cheaply. The deliverable is still the user's working software.
 
-## Choose the useful boundary
+## 1. Contract and risks (a few lines, no code)
 
-Identify the smallest pure decision or state transition whose mistakes matter.
-Keep UI, I/O, storage drivers, framework glue, and unrelated code outside the model.
-For routine logic with no useful invariant, explain that ordinary tests are a better
-fit and continue the requested implementation. If Lean is explicitly requested,
-try a bounded model before deciding its value.
+Scope to the smallest pure state + operations whose mistakes matter; leave UI, I/O
+and glue out. Note state, operations, accepted inputs, invariants, and per-operation
+effects. List risks as concrete traces:
 
-Write down the observable contract and the inputs it actually accepts. Separate
-requirements from assumptions and design choices. Look for interactions between
-operations: identity allocation after deletion, repeated requests, invalid edits,
-limits, and restoration are examples, not a mandatory feature list.
+- each operation after another on the same entity (after delete, release, expire, undo)
+- repeats and retries; update of an existing key vs insert of a new one
+- boundaries: 0, fractional, NaN, limit, exact deadline (`<` vs `<=`), unknown id, untrimmed text
+- identity and order: id reuse after removal or undo; position after update or restore
+- aliasing: any operation that mutates its input or state shared with history
+- side channels: counters, stats, history entries recorded on no-ops
 
-## Make the draft executable
+Record spec gaps as assumptions.
 
-Check the installed Lean version and pin the version used. Prefer the standard
-library for a small model; do not introduce Mathlib or a new build system without
-a concrete need. If Lean cannot run, report the missing prerequisite rather than
-presenting pseudocode as verified.
+## 2. Triage by reading, then search only if it pays
 
-Represent the chosen state and operations faithfully. State validity, preservation
-of that validity, and the intended effect of an operation are different claims:
-prove the ones that constrain the design. A theorem about a detached counter or
-a restatement of a definition is not evidence about the whole state transition.
-Do not make the specification weaker simply to finish a proof.
+Walk each risk trace through the existing code (or design) once. Fix every deviation
+you can confirm by reading, each with a one-line trace test. In small modules this
+step usually finds everything; do not repeat it with heavier machinery.
 
-Run the checker on the actual definitions and proofs. Do not use `sorry`, admitted
-proofs, or custom axioms to stand in for a missing argument. Distinguish a discovered
-counterexample from a syntax error, a failed tactic, or an unproved conjecture.
-Try a representative incorrect transition or counterexample when it helps establish
-that the chosen property excludes the mistake of interest.
+Run `lean --version`. Search mechanically only when Lean is available, the user asked
+for a model, or a risk depends on behavior you could not settle by reading (container
+ordering, aliasing across copies, several interacting operations, code too large to
+trace). Otherwise skip the search and say so.
 
-Keep proof effort proportional to the task. If the model mainly adds ceremony or
-proving library plumbing stalls the work, narrow the claim, disclose the limit,
-and finish the application. Do not call the design fully verified.
+- **Lean available:** std-only file with `State`, `step : State → Op → State`, `inv :
+  State → Bool`; `#eval` the risk traces and all sequences up to length 3 on a tiny
+  domain. Prove only the 1–3 properties that constrain the design; no `sorry`, `admit`
+  or axioms; never weaken the spec to finish.
+- **Lean missing, search still warranted:** do not install it. Write one target-language
+  test over all sequences up to length 3 (2 keys, 3 time points, capacity 2) asserting
+  invariants, input immutability and spec-stated effects; near 60 lines, under a second.
+  Report that nothing was proved.
 
-## Cross the implementation boundary
+A counterexample is a bug to fix and keep as a trace test. Stop once the search runs
+clean; do not grow it into a second implementation.
 
-Translate the checked design into idiomatic target-language code. Do not port
-proof scaffolding, dependent types, or a general abstraction framework merely
-because they made the Lean model convenient.
+## 3. Implementation boundary
 
-Record material semantic differences: natural numbers versus bounded machine
-numbers, structural equality versus object identity, Unicode/whitespace handling,
-mutation, serialization, and I/O failure. Cover the relevant boundaries with
-runtime checks or tests; a model assumption is not input validation.
+Implement idiomatically; no proof scaffolding. Check gaps the model hides: Nat vs float
+or bounded ints, structural vs reference equality, in-place mutation through shallow
+copies, Unicode and whitespace, serialization, I/O failure. A model assumption is not
+input validation. Exercise the real flow; a proof says nothing about wiring or concurrency.
 
-Keep a runnable connection to production logic: compare operation traces or
-boundary examples against the executable model, or check the same explicit
-contract in both implementations. Identify which connection was used and its
-coverage. Finite agreement is not a proof of implementation equivalence.
+## 4. Report (≤8 lines)
 
-Finish the actual user flow and exercise it in its runtime. A proof about a pure
-transition says nothing by itself about event wiring, persistence, accessibility,
-network failures, or concurrency.
-
-## Hand off evidence, not certainty
-
-Report the modeled boundary, checked properties and exact commands, any design
-decision changed by the model, implementation checks, and remaining assumptions.
-If no bug or design improvement was observed, say so. Separate proof/model effort
-from implementation time; cleaner code, faster delivery, and better edge-case
-coverage require comparison evidence rather than being benefits to assume.
+Lean version or "Lean unavailable"; each bug with its trace; what was proved vs
+bounded-checked vs tested; remaining assumptions. Claim gains only with comparison evidence.
