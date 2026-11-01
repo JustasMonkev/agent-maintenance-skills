@@ -45,6 +45,28 @@ trace). Otherwise skip the search and say so.
 A counterexample is a bug to fix and keep as a trace test. Stop once the search runs
 clean; do not grow it into a second implementation.
 
+## Delegate the noisy part
+
+A sub-agent keeps compiler output, failed tactics and test logs out of the main
+context, but starts with a large fixed prompt (tens of thousands of tokens). Do the
+contract, risks and reading triage yourself; they need the code and are cheap. Hand
+work to a fresh sub-agent when a sub-agent tool exists and any one of these holds,
+whatever the module size:
+
+- a Lean proof loop or a search you expect to iterate on failures;
+- a module too large to trace by reading (several hundred lines or more);
+- several such modules: one sub-agent each, in parallel;
+- your context is already long, or the user asked you to keep it small.
+
+If none holds, work inline, even across several small modules. Prefer a faster,
+cheaper model for the sub-agent when you can choose.
+
+Brief it with file paths, the contract, the risk traces, bugs already fixed, domain
+bounds, and which files it may write (tests or model only, unless it owns a whole
+module). Ask for at most 15 lines back: each counterexample as a minimal op trace with
+expected vs actual, files written, commands run, and what was proved vs only checked.
+Fix bugs yourself and rerun its check once.
+
 ## 3. Implementation boundary
 
 Implement idiomatically; no proof scaffolding. Check gaps the model hides: Nat vs float
