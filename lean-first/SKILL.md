@@ -47,7 +47,8 @@ trace). Otherwise skip the search and say so.
   against a reference implementation or a fuzz test of the contract. Report that
   nothing was proved.
 
-Revert each fix once to confirm its check fails; a check that cannot fail proves nothing.
+Temporarily revert only each fix to confirm its check fails, then restore the fix and
+confirm its check passes; a check that cannot fail proves nothing.
 
 A counterexample is a bug to fix and keep as a trace test. Stop once the search runs
 clean; do not grow it into a second implementation.
