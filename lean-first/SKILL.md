@@ -43,7 +43,11 @@ trace). Otherwise skip the search and say so.
 - **Lean missing, search still warranted:** do not install it. Write one target-language
   test over all sequences up to length 3 (2 keys, 3 time points, capacity 2) asserting
   invariants, input immutability and spec-stated effects; near 60 lines, under a second.
-  Report that nothing was proved.
+  For a pure function (parser, decoder, pre-filter) use instead a differential test
+  against a reference implementation or a fuzz test of the contract. Report that
+  nothing was proved.
+
+Revert each fix once to confirm its check fails; a check that cannot fail proves nothing.
 
 A counterexample is a bug to fix and keep as a trace test. Stop once the search runs
 clean; do not grow it into a second implementation.
