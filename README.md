@@ -12,6 +12,7 @@ Reusable agent skills for common software maintenance, research, and review work
 | `grade-skill` | Evaluate an agent skill with a rubric and realistic task prompts. |
 | `lean-first` | Predict contract bugs in consequential state logic, triage by reading, and check a small Lean model only where it pays. |
 | `monitor-upstream` | Track upstream repository changes that may affect a local fork or wrapper. |
+| `prevent-mistakes` | Catch avoidable implementation mistakes before review: understand first, name risks, make the smallest correct change, verify the actual claim. |
 | `prior-art-search` | Search for existing projects and libraries before building something new. |
 | `security-scan-sharded` | Coordinate a sharded security review and validate findings. |
 | `update-deps-verify` | Update dependencies in safe batches with verification after each batch. |
