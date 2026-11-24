@@ -36,7 +36,7 @@ trace). Otherwise skip the search and say so.
 - **Lean available:** std-only file with `State`, `step : State → Op → State`, `inv :
   State → Bool`; `#eval` the risk traces and all sequences up to length 3 on a tiny
   domain. Prove only the 1–3 properties that constrain the design; no `sorry`, `admit`
-  or axioms; never weaken the spec to finish. Then replay the risk traces (and any
+  or project axioms. Check claimed proofs as below. Then replay the risk traces (and any
   counterexamples) as target-language tests asserting the model's `#eval` results and
   resulting state against the real code; a passing model says nothing about the code
   until those match.
@@ -52,6 +52,24 @@ confirm its check passes; a check that cannot fail proves nothing.
 
 A counterexample is a bug to fix and keep as a trace test. Stop once the search runs
 clean; do not grow it into a second implementation.
+
+### When claiming a proof
+
+Write the expected theorem type from the contract before working on the proof.
+Keep it fixed and type-check the proposed theorem against it. For example, if a
+successful allocation must increment the counter by exactly one, close the model with:
+
+```lean
+example : ∀ n : Nat, nextCounter n = n + 1 := allocationEffect
+#print axioms allocationEffect
+```
+
+The first line rejects a theorem that adds the desired effect as a premise. Read
+the type **and its definitions** against the requirement: Lean cannot tell whether
+`nextCounter` models a real allocation. The second line lists dependencies even
+through imported lemmas. Treat `sorryAx` or an unexpected axiom as an unproved
+claim, even if Lean exits zero; distinguish standard Lean axioms such as
+`propext`, `Classical.choice`, and `Quot.sound` from project assumptions.
 
 ## Delegate the noisy part
 
