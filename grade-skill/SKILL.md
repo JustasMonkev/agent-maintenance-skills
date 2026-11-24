@@ -17,11 +17,23 @@ A skill is graded by running it, not by reading it.
 - **Scope discipline (2)**: covers its one job; no bloat, no duplicated general knowledge the model already has; under ~100 lines or split into references.
 
 ## Process
-1. Read the SKILL.md and any bundled scripts/references.
-2. Write 3 realistic task prompts the skill should handle + 1 it should NOT trigger on.
-3. Dispatch a fresh agent per prompt with only the skill as guidance; observe where it stalls, guesses, or asks avoidable questions.
-4. Score each rubric line with one sentence of evidence from the runs.
+1. **Write the answer key first.** Choose three realistic requests the skill should handle;
+   describe a successful result for each. Add a near miss for a neighboring skill and an
+   unrelated request that fits no skill in the test catalog. Record the expected selection
+   for all five. Don't name the skill in a request unless you're testing explicit invocation.
+2. **Test discovery.** For every request use the same catalog of real skill names and
+   frontmatter descriptions, including the target and its neighbors. Give a fresh agent
+   only the catalog and one request: “Which single skill, if any, best fits this request?
+   Return its name or NONE. Do not perform the task.” Don't identify the target, disclose
+   the key or give the agent access to skill bodies. Record its choice before comparing
+   with the key. This tests description-based selection, not a host's automatic loading.
+3. **Test execution separately.** For each of the three in-scope requests, give a fresh
+   agent the actual skill and task inputs in a suitable workspace, even if discovery
+   missed it. Compare the work to the expected result; note where it stalls, guesses,
+   or needs information the skill omitted.
+4. Score trigger clarity from the routing choices and the other criteria from execution.
+   If an isolated trial couldn't run, mark it untested rather than inferring its outcome.
 
 ## Report
 - `score/10`, per-criterion breakdown, then the 3 highest-impact concrete edits (quote the line to change and the replacement).
-- A 10/10 requires all 4 test runs to succeed without the agent needing knowledge the skill omitted.
+- Show expected → observed selections and the three execution outcomes. A 10/10 requires all five routes to match and all three tasks to succeed without the agent needing knowledge the skill omitted.
